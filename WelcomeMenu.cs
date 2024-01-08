@@ -25,7 +25,7 @@ namespace VisitorManagement
                 case 1:
                     Login registration = new Login();
                     registration.RegisterUser();
-                    User.Display();
+                  
                    Login Reg = new Login();
                     Reg.AuthenticateUser();
                     

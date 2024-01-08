@@ -16,6 +16,13 @@ namespace VisitorManagement
     {
         
         private static List<User> users = new List<User>();
+
+        public static List<User> GetUsers()
+        {
+            return users;
+        }
+
+        
         
         public string FullName { get; set; }
         public string Password { get; set; }

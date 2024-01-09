@@ -31,6 +31,7 @@ namespace VisitorManagement
             {
                 Console.WriteLine("-----------------------------------------------");
                 Console.WriteLine("Authentication Successful!, Welcome Admin User");
+                User.Display();
             }
             else
             {
@@ -47,6 +48,8 @@ namespace VisitorManagement
             return enteredUsername == _AdminUsername && enteredPassword == _AdminPassword;
 
         }
+
+        
 
 
 

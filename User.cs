@@ -26,6 +26,7 @@ namespace VisitorManagement
         
         public string FullName { get; set; }
         public string Password { get; set; }
+        
 
         private int _custId;
         public int getCustId()
@@ -40,7 +41,7 @@ namespace VisitorManagement
 
         public static void Display()
         {
-            Console.WriteLine("List of users");
+            Console.WriteLine("---------------------------------------");
             foreach (var i in users)
             {
                 Console.WriteLine("List of users: " + i.FullName);

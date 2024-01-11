@@ -18,6 +18,8 @@ namespace VisitorManagement
             Console.WriteLine("--------REGISTRATION PAGE--------------");
             Console.Write("Enter Your Full Name: ");
             newusers.FullName= Console.ReadLine();
+            Console.Write("Enter Your Email: ");
+            newusers.Email = Console.ReadLine();
             Console.Write("Please Enter Your Password: ");
             newusers.Password = Console.ReadLine();
 
@@ -80,8 +82,9 @@ namespace VisitorManagement
            
             Console.WriteLine("Your profile details :");
             Console.WriteLine($"Your Name is : {user.FullName}");
+            Console.WriteLine($"Your Email is : {user.Email}");
             Console.WriteLine("--------------------------------------");
-            Console.WriteLine("To view home menu, please type exit or select 1 to reset your password");
+            Console.WriteLine("Type exit to exit or select 1 to reset your password");
             string ProfileInput = Console.ReadLine().ToLower();
             if (ProfileInput == "exit")
             {
@@ -102,6 +105,12 @@ namespace VisitorManagement
                 Console.Clear();
                 login.AuthenticateUser();
 
+            }
+            else
+            {
+                Console.Clear();
+                WelcomeMenu menu = new WelcomeMenu();
+                menu.OGMenu();
             }
 
         }
@@ -124,10 +133,3 @@ namespace VisitorManagement
 }
 
 
-/*string reset = Console.ReadLine();
-if (reset == "yes" || reset == "y")
-{
-    Console.WriteLine("-----Forgot Password--------");
-    Console.WriteLine("Admin User Only");
-
-}*/

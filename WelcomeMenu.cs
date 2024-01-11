@@ -16,7 +16,7 @@ namespace VisitorManagement
             Console.WriteLine("3.   Admin User");
             Console.WriteLine("4.   Exit");
 
-
+            User curretUser = new User();
 
             int MenuResponse = int.Parse(Console.ReadLine());
 
@@ -37,6 +37,7 @@ namespace VisitorManagement
                 case 3:
                     Admin admin = new Admin("Admin", "Acce$$Flow");
                     admin.AdminUser();
+                    admin.Privileges(curretUser);
                     break;
                 case 4:
                     ExitMenu();
@@ -44,7 +45,7 @@ namespace VisitorManagement
                 default:
                     Console.WriteLine("Invalid Input");
                     OGMenu();
-                    break;
+                    break;  
 
 
             }

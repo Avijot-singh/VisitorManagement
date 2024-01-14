@@ -41,11 +41,11 @@ namespace VisitorManagement
                 HomeMenu.OGMenu();
             }
 
-          
+
         }
 
-      
-        public bool Authenticate( string enteredUsername, string enteredPassword)
+
+        public bool Authenticate(string enteredUsername, string enteredPassword)
         {
             return enteredUsername == _AdminUsername && enteredPassword == _AdminPassword;
 
@@ -55,19 +55,19 @@ namespace VisitorManagement
         public void Privileges(User user)
         {
             Console.WriteLine("Admin privileges");
-            // Getting the username for tasks
+
             Console.WriteLine("Please Select the username to perform tasks :");
-            Display();
+            Display(); // Displaying the list of users
             Console.Write("Username :");
-            string AUsername = Console.ReadLine();
+            string AUsername = Console.ReadLine(); // storing the selected user in AUsername variable
             Console.WriteLine($"Username {AUsername}");
 
-            User selectedUser = GetUsers().Find(u => u.FullName.Equals(AUsername, StringComparison.OrdinalIgnoreCase));
+            User selectedUser = GetUsers().Find(u => u.FullName.Equals(AUsername, StringComparison.OrdinalIgnoreCase)); // Finding the user in the list, store the data inside the selectedUser, if not return it null
 
 
 
-            // Getting the selected User from the registered list
 
+            // if not null perform the taks 
             if (selectedUser != null)
             {
                 Console.WriteLine("1.   Reset Password");
@@ -81,17 +81,42 @@ namespace VisitorManagement
                 if (PrivResponse == "1")
                 {
 
+
+                    Console.WriteLine(
+                        $"The current password for the user {selectedUser.FullName} is {selectedUser.Password}");
+                    Console.Write($"Type the new password for {selectedUser.FullName} : ");
+                    string UpdatedPassword = Console.ReadLine();
+                    selectedUser.Password = UpdatedPassword;
+                    Console.WriteLine($"Password successfully changed for {selectedUser.FullName}:");
+                    Console.WriteLine($"New password : {selectedUser.Password}");
+                    Thread.Sleep(3000);
+                    WelcomeMenu HomeMenu = new WelcomeMenu();
+                    HomeMenu.OGMenu();
+
+                }
+
+                if (PrivResponse == "2")
+                {
+                    Console.WriteLine("----Delete User----");
+                    Console.WriteLine($"Please confirm to delete user {selectedUser.FullName}");
+                    string DeleteUser = Console.ReadLine().ToLower();
+                    if (DeleteUser == "yes" || DeleteUser == "y" || DeleteUser == "confirm")
                     {
-                        Console.WriteLine($"The current password for the user {selectedUser.FullName} is {selectedUser.Password}");
-                        Console.Write($"Type the new password for {selectedUser.FullName} : ");
-                        string UpdatedPassword = Console.ReadLine();
-                        selectedUser.Password = UpdatedPassword;
-                        Console.WriteLine($"Password successfully changed for {selectedUser.FullName}:");
-                        Console.WriteLine($"New password : {selectedUser.Password}");
-                        Thread.Sleep(3000);
+                        GetUsers().Remove(selectedUser);
+
+                        Console.WriteLine($"User removed successfully");
+                        Console.WriteLine("Bellow is the list:");
+                        Display();
+                        Thread.Sleep(5000);
+                        Console.Clear();
                         WelcomeMenu HomeMenu = new WelcomeMenu();
                         HomeMenu.OGMenu();
                     }
+
+                }
+                else
+                {
+                    Console.WriteLine("Wrong input please select again");
                 }
 
 
@@ -111,4 +136,6 @@ namespace VisitorManagement
 
 
         }
+    }
 }
+

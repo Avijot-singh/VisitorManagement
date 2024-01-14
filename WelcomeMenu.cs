@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,19 +18,38 @@ namespace VisitorManagement
             Console.WriteLine("3.   Admin User");
             Console.WriteLine("4.   Exit");
 
+
+
+            bool Isvalid;
+            int menuResponse;
+
+            do
+            {
+                Console.Write("Option:");
+                Isvalid = int.TryParse(Console.ReadLine(), out menuResponse);
+                if (!Isvalid || menuResponse < 1 || menuResponse > 4)
+                {
+                    Console.WriteLine("invalid input, please enter again");
+                }
+
+
+            } while (!Isvalid || menuResponse < 1 || menuResponse > 4);
+
+            ProcessMenuInput(menuResponse);
+        }
+
+        private void ProcessMenuInput(int menuResponse)
+        {
             User curretUser = new User();
-
-            int MenuResponse = int.Parse(Console.ReadLine());
-
-            switch (MenuResponse)
+            switch (menuResponse)
             {
                 case 1:
                     Login registration = new Login();
                     registration.RegisterUser();
-                  
-                   Login Reg = new Login();
+
+                    Login Reg = new Login();
                     Reg.AuthenticateUser();
-                    
+
                     break;
                 case 2:
                     Login login = new Login();
@@ -45,11 +66,13 @@ namespace VisitorManagement
                 default:
                     Console.WriteLine("Invalid Input");
                     OGMenu();
-                    break;  
+                    break;
 
 
             }
+
         }
+
 
         public void ExitMenu()
         {
